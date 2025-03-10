@@ -33,6 +33,7 @@ module.exports = function (api) {
       ["@babel/preset-react", { development: isDevelopmentEnv || isTestEnv }],
     ].filter(Boolean),
     plugins: [
+      "js-logger",
       "babel-plugin-macros",
       "js-logger",
       "@babel/plugin-transform-runtime",
