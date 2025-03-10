@@ -42,5 +42,8 @@
     "presets": [
       "./node_modules/shakapacker/package/babel/preset.js"
     ]
+  },
+  "devDependencies": {
+    "@babel/plugin-syntax-dynamic-import": "^7.8.3"
   }
 }
