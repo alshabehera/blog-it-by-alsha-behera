@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source "https://rubygems.org"
 
 ruby "3.2.2"
@@ -49,6 +51,8 @@ group :development do
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
+
+  gem "erb_lint", require: false, git: "https://github.com/Shopify/erb-lint.git", branch: "main"
 end
 
 group :test do
@@ -60,4 +64,12 @@ end
 # For compiling and bundling JavaScript. Read more: https://github.com/shakacode/shakapacker
 gem "shakapacker", "~> 6.6.0"
 
-gem 'react-rails', "~> 2.7.1"
+gem "react-rails", "~> 2.7.1"
+
+group :development, :test do
+  # previous gems under this group as it was
+
+  # For code formatting and linting
+  gem "rubocop", require: false
+  gem "rubocop-rails", require: false
+end
