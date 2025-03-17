@@ -16,7 +16,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_03_17_023709) do
     t.text "description", null: false
     t.integer "upvotes", default: 0, null: false
     t.integer "downvotes", default: 0, null: false
-    t.datetime "is_bloggable"
+    t.boolean "is_bloggable", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
