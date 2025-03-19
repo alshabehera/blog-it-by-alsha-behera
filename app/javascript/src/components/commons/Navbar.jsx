@@ -1,8 +1,8 @@
 import React from 'react'
 
-const Navbar = () => {
+const Navbar = ({title}) => {
   return (
-    <div className="p-7 text-3xl font-bold">Blog Posts</div>
+    <div className="p-7 text-3xl font-bold">{title}</div>
   )
 }
 
