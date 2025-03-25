@@ -1,26 +1,30 @@
-import React from 'react'
+import { Typography } from '@bigbinary/neetoui';
+import React, { useEffect } from 'react'
 import { useHistory } from 'react-router-dom';
+import { formattedDate } from './utils';
 
-const Card = ({title,description,created_at,slug}) => { 
-    const history = useHistory();
-    const date = new Date(created_at);
-    const options = { day: "numeric", month: "long", year: "numeric" };
-    const formattedDate = date.toLocaleDateString("en-GB", options); 
+const Card = ({title,created_at,slug,categories,user}) => { 
+    const history = useHistory(); 
     const showPost = slug => {
       history.push(`/blog/${slug}`);
     };
+
     return (
       <>
-        <div className="border-b-2 border-gray-300">
-            <div className="text-lg font-bold pb-3">
-            <a className="cursor-pointer" onClick={() => showPost(slug)}>
-           {title}
-          </a>
+        <div className="flex flex-col border-b-2 border-gray-300 gap-1">
+            <div className="font-bold pb-2 mr-5">
+             <a className="cursor-pointer" onClick={() => showPost(slug)}>
+              <Typography className="text-lg">{title}</Typography>
+             </a>
             </div>
-            <div>
-                {description}
-            </div>
-            <span>{ formattedDate}</span>
+            <div className="flex gap-2">
+              {categories?.map(category => (
+                <span key={category.id} className="p-1 px-3 bg-green-100 rounded-xl font-medium text-xs">
+                  {category.name}
+                </span>
+         ))}</div>
+            <Typography className="text-sm font-medium">{user && user.name}</Typography>
+            <span className="text-gray-500 text-xs">{ formattedDate(created_at)}</span>
             
             </div>
       </>

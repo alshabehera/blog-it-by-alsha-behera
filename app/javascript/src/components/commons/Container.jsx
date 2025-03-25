@@ -11,7 +11,7 @@ const Container = ({ children, className = "", title }) => (
     <Sidebar/>
     <div className="flex flex-col p-10 w-full pb-20">
     <Navbar {...{title}} />
-    <div className={classNames("px-6 mx-auto", [className])}>
+    <div className={classNames("px-6", [className])}>
       {children}
     </div>
     </div>
