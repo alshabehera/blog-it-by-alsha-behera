@@ -34,6 +34,6 @@ class Post < ApplicationRecord
   def slug_not_changed
     return unless will_save_change_to_slug? && persisted?
 
-    errors.add(:slug, 'is immutable!')
+    errors.add(:slug, I18n.t('post.slug.immutable'))
   end
 end
