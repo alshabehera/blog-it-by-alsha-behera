@@ -3,11 +3,13 @@ import PageLoader from "../commons/PageLoader";
 import Card from "./Card";
 import { isNil, isEmpty, either } from "ramda";
 import postsApi from "../../apis/posts";
-import Logger from "js-logger";
+import { getFromLocalStorage } from "../../utils/storage";
 
 const Post = ({ clickedCategories }) => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const organizationId = getFromLocalStorage("authOrganizationId");
+   
 
   const fetchPosts = async () => {
     try {
@@ -16,9 +18,10 @@ const Post = ({ clickedCategories }) => {
       } = await postsApi.fetch();
       setPosts(posts);
       console.log(posts)
+      console.log(organizationId)
       
     } catch (error) {
-      Logger.error(error);
+      console.log(error)
     } finally{
       setLoading(false);
     }
@@ -28,10 +31,14 @@ const Post = ({ clickedCategories }) => {
     fetchPosts();
   }, []);
 
+  const organizationPosts = posts.filter((post)=>
+    post.organization.id == organizationId
+  )
+
   const filteredPosts =
     clickedCategories.length === 0
-      ? posts 
-      : posts.filter((post) =>
+      ? organizationPosts
+      :organizationPosts.filter((post) =>
           post.categories.some((category) => clickedCategories.includes(category.id))
         );
 

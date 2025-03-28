@@ -2,10 +2,13 @@ import React, { useState } from 'react';
 import Input from '../../commons/Input';
 import postsApi from '../../../apis/posts';
 import { useHistory } from 'react-router-dom';
+import { getFromLocalStorage } from '../../../utils/storage';
 
 const Form = ({ title, description, setTitle, setDescription, categories }) => {
   const history = useHistory();
   const [selectedCategories, setSelectedCategories] = useState([]);
+   const organizationId = getFromLocalStorage("authOrganizationId");
+    const userId = getFromLocalStorage("authUserId");
 
   const handleSubmit = async () => {
     try {
@@ -13,8 +16,8 @@ const Form = ({ title, description, setTitle, setDescription, categories }) => {
         title,
         description,
         category_ids: selectedCategories.map(id => Number(id)), // Ensure IDs are numbers
-        user_id: 1,
-        organization_id: 1,
+        user_id: userId,
+        organization_id: organizationId,
       });
       history.push("/");
     } catch (error) {

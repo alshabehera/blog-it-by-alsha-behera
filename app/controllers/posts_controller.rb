@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
+  skip_before_action :authenticate_user_using_x_auth_token
   def index
-    @posts = Post.includes(:categories,:user).all
+    @posts = Post.includes(:categories,:user,:organization).all
   end
 
   def new
@@ -15,7 +16,7 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.includes(:categories, :user).find_by!(slug: params[:slug])
+    @post = Post.includes(:categories, :user, :organization).find_by!(slug: params[:slug])
   end
 
   private

@@ -11,7 +11,7 @@ const Card = ({title,created_at,slug,categories,user}) => {
 
     return (
       <>
-        <div className="flex flex-col border-b-2 border-gray-300 gap-1">
+        <div className="flex flex-col border-b-2 border-gray-300">
             <div className="font-bold pb-2 mr-5">
              <a className="cursor-pointer" onClick={() => showPost(slug)}>
               <Typography className="text-lg">{title}</Typography>
@@ -23,7 +23,7 @@ const Card = ({title,created_at,slug,categories,user}) => {
                   {category.name}
                 </span>
          ))}</div>
-            <Typography className="text-sm font-medium">{user && user.name}</Typography>
+            <Typography className="text-sm">{user && user.name}</Typography>
             <span className="text-gray-500 text-xs">{ formattedDate(created_at)}</span>
             
             </div>

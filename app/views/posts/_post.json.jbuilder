@@ -12,3 +12,9 @@ json.extract! post.user,
  :id,
  :name
 end
+
+json.organization do
+json.extract! post.organization,
+  :id,
+  :name
+end
