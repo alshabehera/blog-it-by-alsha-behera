@@ -2,8 +2,9 @@ import React, { useState } from "react";
 
 import authApi from "apis/auth";
 import SignupForm from "components/Authentication/Form/Signup";
+import { useHistory } from "react-router-dom";
 
-const Signup = ({ history }) => {
+const Signup = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -11,6 +12,7 @@ const Signup = ({ history }) => {
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async event => {
+    const history = useHistory();
     event.preventDefault();
     setLoading(true);
     try {
