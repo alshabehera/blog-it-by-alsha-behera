@@ -9,7 +9,7 @@ const New = () => {
   const [description,setDescription] =useState("");
   const categories = useFetchCategories();
   return (
-    <Container title="New blog post" className= "border border-gray-200 rounded-lg w-full h-screen pl-10 mt-5">
+    <Container title="New blog post" className= "border border-gray-200 rounded-lg w-full h-96 pl-10 mt-5">
       <Form {...{title,description,setTitle,setDescription,categories}}/>
     </Container>
   )

@@ -27,8 +27,8 @@ const Sidebar = ({onToggleCategory}) => {
   };
 
   return (
-    <div className="border border-l-2 border-gray-300 w-14 h-full flex flex-col gap-2 p-2 relatively">
-       <i className="ri-blogger-line text-3xl"></i>
+<div className="border border-l-2 border-gray-300 w-14 flex flex-col gap-2 p-2 fixed left-0 top-0 h-screen bg-white shadow-md">
+<i className="ri-blogger-line text-3xl"></i>
         <Link to="/"> <i className="ri-menu-fill text-2xl mr-3"/></Link>
         <Link to="/blog">
         <i className="ri-edit-2-line text-2xl"></i>

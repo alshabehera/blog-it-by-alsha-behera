@@ -15,7 +15,7 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="flex h-screen w-screen">
+    <div className="flex h-screen ml-16">
       <Sidebar onToggleCategory={() => setShowCategory(!showCategory)} />
       {showCategory && (
         <Category

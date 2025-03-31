@@ -43,9 +43,9 @@ const Show = () => {
   return (
 
 
-<div className="flex h-screen w-screen">
+<div className="flex h-screen">
   <Sidebar/>
-  <div className="flex flex-col p-10 w-full pb-20">
+  <div className="flex flex-col p-10 w-full pb-20 ml-16">
     <div className="flex gap-2">
       {post.categories.map(category => (
         <span key={category.id} className="p-1 px-3 bg-green-100 rounded-xl">
@@ -56,7 +56,7 @@ const Show = () => {
      <Typography className="ml-5 font-medium mt-3">{post.user.name}</Typography>
      <Typography className="ml-5 text-pretty text-sm">{formattedDate(post.created_at)}</Typography>
      <div className="px-5 mt-5">
-        {post.description}
+        <Typography>{post.description}</Typography>
      </div>
    </div>
 </div>

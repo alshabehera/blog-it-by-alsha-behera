@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   skip_before_action :authenticate_user_using_x_auth_token
   def index
-    @posts = Post.includes(:categories,:user,:organization).all
+    @posts = Post.includes(:categories, :user, :organization).order(created_at: :desc)
   end
 
   def new
