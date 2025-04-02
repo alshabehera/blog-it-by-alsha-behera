@@ -1,10 +1,11 @@
 import "../stylesheets/application.scss";
 import ReactRailsUJS from "react_ujs";
 import App from "../src/App";
+import {initializeLogger} from "../src/common/logger.js";
+import { registerIntercepts, setAuthHeaders } from "apis/axios";
 
-import { setAuthHeaders } from "apis/axios";
-import { initializeLogger } from "common/logger";
 
+registerIntercepts();
 initializeLogger();
 setAuthHeaders();
 

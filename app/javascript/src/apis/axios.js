@@ -1,5 +1,6 @@
 import axios from "axios";
 import { getFromLocalStorage, setToLocalStorage } from "../utils/storage";
+import Toastr from "../components/commons/Toastr";
 
 const DEFAULT_ERROR_NOTIFICATION = "Something went wrong!";
 
