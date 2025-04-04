@@ -966,10 +966,10 @@
   resolved "https://registry.yarnpkg.com/@bigbinary/neeto-cist/-/neeto-cist-1.0.6.tgz#cf9e34910a765e6cb946503c0bf7ab1632ef8e17"
   integrity sha512-UebvniTSUyNYOIZMiNSDpV4HqHtwvYfaUaE3+C4ZBSY44csUCRgwOeD0njU3rQpE5eAL+e6KYsV9moRz4/uc0g==
 
-"@bigbinary/neeto-icons@1.17.6":
-  version "1.17.6"
-  resolved "https://registry.yarnpkg.com/@bigbinary/neeto-icons/-/neeto-icons-1.17.6.tgz#6e409b70a5056dd95e1b10ae2030566333826595"
-  integrity sha512-D+1o+r73sjV1kZNswMX96gPScrz5hhKCji7Xr+IngLTfJhV1AqXyYms7k0pUm59wOHfqx6eUeVsbPP+l1st7Yg==
+"@bigbinary/neeto-icons@^1.17.6":
+  version "1.20.29"
+  resolved "https://registry.yarnpkg.com/@bigbinary/neeto-icons/-/neeto-icons-1.20.29.tgz#192cf6386cb2732d2f8fddc39ec82dd951d2c7e5"
+  integrity sha512-3ShAKHNMbxi/SKAq4eWmYKO/IVkt5Lsh2YTB1i3ZuTlElOIXEq1eF+UM371AUK2hJcEZUqudFi4tOMRIwYpKoQ==
 
 "@bigbinary/neetoui@5.2.41":
   version "5.2.41"
