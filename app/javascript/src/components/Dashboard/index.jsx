@@ -11,7 +11,7 @@ const Dashboard = () => {
   const [clickedCategories, setClickedCategories] = useState([]); // Store selected categories
 
   const handleClick = () => {
-    history.replace("/blog-new");
+    history.replace("/blog");
   };
 
   return (

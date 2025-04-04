@@ -8,6 +8,8 @@ const useFetchCategories = () => {
   const fetchCategories = async () => {
     try {
       const response = await categoriesApi.fetch();
+      console.log("API Response:", response);
+
       if (response.data?.categories) {
         const formattedCategories = response.data.categories.map((category) => ({
           id: category.id,

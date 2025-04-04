@@ -3,7 +3,7 @@ import React, { useEffect } from 'react'
 import { useHistory } from 'react-router-dom';
 import { formattedDate } from './utils';
 
-const Card = ({title,created_at,updated_at,slug,categories,user}) => { 
+const Card = ({title,created_at,slug,categories,user}) => { 
     const history = useHistory(); 
     const showPost = slug => {
       history.push(`/blog/${slug}`);
@@ -24,7 +24,7 @@ const Card = ({title,created_at,updated_at,slug,categories,user}) => {
                 </span>
          ))}</div>
             <Typography className="text-sm">{user && user.name}</Typography>
-            <span className="text-gray-500 text-xs"> {formattedDate(updated_at || created_at)}</span>
+            <span className="text-gray-500 text-xs">{ formattedDate(created_at)}</span>
             
             </div>
       </>

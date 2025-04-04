@@ -3,7 +3,6 @@ import React from "react";
 import { either, isEmpty, isNil } from "ramda";
 import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
 import Dashboard from "./components/Dashboard";
-import User from "./components/User";
 import New from "./components/Post/New";
 import Show from "./components/Post/Show";
 import Signup from "./components/Authentication/Signup";
@@ -12,7 +11,6 @@ import { Login } from "./components/Authentication";
 import PrivateRoute from "./components/commons/PrivateRoute";
 import Edit from "./components/Post/Edit";
 import { ToastContainer } from "react-toastify";
-import Preview from "./components/Post/Preview";
 
 const App = () => {
   const authToken = getFromLocalStorage("authToken");
@@ -21,12 +19,10 @@ const App = () => {
     <Router>
       <ToastContainer />
       <Switch>
-        <Route exact path="/blog/:slug" component={Show} />
-        <Route exact path="/blog-new" component={New} />
+      <Route exact path="/blog/:slug" component={Show} />
+        <Route exact path="/blog" component={New} />
         <Route exact path="/signup" component={Signup} />
         <Route exact path="/blog/:slug/edit" component={Edit} />
-        <Route exact path="/blogs" component={User} />
-        <Route exact path="/blogs/:slug/preview" component={Preview} />
         <Route exact component={Login} path="/login" />
         <PrivateRoute
           component={Dashboard}

@@ -18,7 +18,7 @@ const Show = () => {
       try {
         const {
           data: { post },
-        } = await postsApi.show(slug);      
+        } = await postsApi.show(slug);
         setPost(post);
         setLoading(false);
       } catch (error) {
@@ -52,18 +52,9 @@ const Show = () => {
           {category.name}
         </span>
   ))}</div>
-  <div className="flex justify-between">
-    <div className="flex gap-2">
-    <Navbar title={post.title} />
-    {post.status == "Draft" && <span className="h-5 w-20 bg-red border border-red-600 rounded-md text-red-600 text-center mt-9">{post.status}</span>}
-    </div>
-  <a className="cursor-pointer" onClick={() =>  history.push(`/blog/${slug}/edit`)}>
-    <i className="ri-edit-2-line text-2xl"/>
-  </a>
-  </div>
-     
+     <Navbar title={post.title} />
      <Typography className="ml-5 font-medium mt-3">{post.user.name}</Typography>
-     <Typography className="ml-5 text-pretty text-sm"> {formattedDate(post.updated_at || post.created_at)}</Typography>
+     <Typography className="ml-5 text-pretty text-sm">{formattedDate(post.created_at)}</Typography>
      <div className="px-5 mt-5">
         <Typography>{post.description}</Typography>
      </div>
