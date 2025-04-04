@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: %i[destroy update]
+  before_action :set_post, only: %i[destroy update show]
   skip_before_action :authenticate_user_using_x_auth_token
   def index
     @posts = Post.includes(:categories, :user, :organization).order(created_at: :desc)
@@ -15,11 +15,10 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.includes(:categories, :user, :organization).find_by!(slug: params[:slug])
   end
 
   def update
-    @post = Post.update!(post_params)
+    @post.update!(post_params)
     render_notice(t("post.update"))
   end
 
