@@ -1,44 +1,20 @@
-import React, { useEffect, useState } from 'react'
-import { useHistory, useParams } from 'react-router-dom';
+import React from 'react'
+import { useLocation, useHistory, useParams } from 'react-router-dom';
 import PageLoader from '../commons/PageLoader';
-import Logger from 'js-logger';
-import postsApi from '../../apis/posts';
 import Sidebar from '../commons/Sidebar';
 import Navbar from '../commons/Navbar';
 import { Typography } from '@bigbinary/neetoui';
 import { formattedDate } from './utils';
 
 
-const Show = () => {
-    const [loading, setLoading] = useState(true);
-   const [post,setPost] = useState();
-   const { slug } = useParams();
-   const history = useHistory();
-    const fetchPost = async () => {
-      try {
-        const {
-          data: { post },
-        } = await postsApi.show(slug);      
-        setPost(post);
-        setLoading(false);
-      } catch (error) {
-        Logger.error(error);
-        history.push("/");
-      }finally{
-        setLoading(false);
-      }
-    };
-    
-    useEffect(() => {
-        fetchPost();
-      }, []);
-    
-      if (loading) {
-        return (
-          <div>
-            <PageLoader />
-          </div>
-        );
+const Preview = () => {
+    const history = useHistory();
+    const location = useLocation();
+    const { slug } = useParams();
+    const post = location.state;
+
+    if (!post) {
+        return <PageLoader />;
       }
   return (
 
@@ -76,4 +52,4 @@ const Show = () => {
   )
 }
 
-export default Show
+export default Preview

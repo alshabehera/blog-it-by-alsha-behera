@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 import { useHistory } from 'react-router-dom';
 
-import { Button, Modal, Typography } from "@bigbinary/neetoui"
+import { Modal, Typography } from "@bigbinary/neetoui"
 import Input from '../commons/Input';
 import categoriesApi from '../../apis/categories';
 
@@ -17,7 +17,7 @@ const DetailModal = ({isModalOpen,setIsModalOpen}) => {
       history.push("/");
       setIsModalOpen(false);
     } catch (error) {
-      console.log(error);
+      logger.error(error);
     }
   };
 

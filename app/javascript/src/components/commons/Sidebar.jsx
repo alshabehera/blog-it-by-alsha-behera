@@ -4,6 +4,7 @@ import "remixicon/fonts/remixicon.css";
 import { getFromLocalStorage, setToLocalStorage } from '../../utils/storage';
 import { resetAuthTokens } from '../../apis/axios';
 import authApi from '../../apis/auth';
+import profileImage from "images/profile.png";
 
 const Sidebar = ({onToggleCategory}) => {
   const [showProfile, setShowProfile] = useState(false);
@@ -22,7 +23,7 @@ const Sidebar = ({onToggleCategory}) => {
       resetAuthTokens();
       window.location.href = "/";
     } catch (error) {
-      console.error(error); //logger
+      logger.error(error);
     }
   };
 
@@ -30,17 +31,22 @@ const Sidebar = ({onToggleCategory}) => {
 <div className="border border-l-2 border-gray-300 w-14 flex flex-col gap-2 p-2 fixed left-0 top-0 h-screen bg-white shadow-md">
 <i className="ri-blogger-line text-3xl"></i>
         <Link to="/"> <i className="ri-menu-fill text-2xl mr-3"/></Link>
-        <Link to="/blog">
+        <Link to="/blog-new">
         <i className="ri-edit-2-line text-2xl"></i>
       </Link>
       <i className="ri-list-check text-2xl cursor-pointer" onClick={onToggleCategory}></i>
-      <div className="absolute bottom-0">
-      <button onClick={() => setShowProfile(!showProfile)}><i className="ri-profile-fill text-3xl mb-1" aria-label="Profile"></i></button>
+      <Link to="/blogs"><i className="ri-folder-3-line text-2xl"/></Link>
+      <div className="absolute bottom-3">
+      <button onClick={() => setShowProfile(!showProfile)}><img
+                src={profileImage}
+                alt="Profile"
+                className="w-8 h-8 rounded-full"
+              /></button>
       {showProfile && (
           <div className="absolute bottom-12 left-0 bg-white shadow-lg rounded-lg p-3 w-48">
             <div className="flex items-center gap-2">
               <img
-                src="/profile.jpg"
+                src={profileImage}
                 alt="Profile"
                 className="w-8 h-8 rounded-full"
               />

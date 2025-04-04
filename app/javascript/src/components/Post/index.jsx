@@ -16,12 +16,9 @@ const Post = ({ clickedCategories }) => {
       const {
         data: { posts },
       } = await postsApi.fetch();
-      setPosts(posts);
-      console.log(posts)
-      console.log(organizationId)
-      
+      setPosts(posts);      
     } catch (error) {
-      console.log(error)
+      logger.error(error);
     } finally{
       setLoading(false);
     }
