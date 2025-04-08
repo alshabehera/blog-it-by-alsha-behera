@@ -4,12 +4,8 @@ class CategoriesController < ApplicationController
     @categories = Category.all
   end
 
-  def new
-    @category = Category.new
-  end
-
   def create
-    category = Category.create(category_param)
+    category = Category.create!(category_param)
   end
 
   private
