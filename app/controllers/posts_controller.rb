@@ -1,16 +1,12 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: %i[destroy update show]
+  before_action :load_post, only: %i[destroy update show]
   skip_before_action :authenticate_user_using_x_auth_token
   def index
     @posts = Post.includes(:categories, :user, :organization).order(created_at: :desc)
   end
 
-  def new
-    post = Post.new
-  end
-
   def create
-    post = Post.create(post_params)
+    post = Post.create!(post_params)
     render_notice(t('post.create'))
   end
 
@@ -23,14 +19,13 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    return unless @post.destroy
-
+    @post.destroy!
     render_notice(t("post.delete"))
   end
 
   private
 
-  def set_post
+  def load_post
     @post = Post.includes(:categories, :user, :organization).find_by!(slug: params[:slug])
   end
 

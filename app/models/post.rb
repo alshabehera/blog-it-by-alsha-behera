@@ -33,11 +33,6 @@ class Post < ApplicationRecord
   end
 
   def update_last_published_date
-    if status == 'Publish'
-      date = Time.current
-    elsif status == 'Draft'
-      date = self.last_published_date || Time.current
-    end    
-    self.last_published_date = date;
-  end
+    self.last_published_date= Time.current if status == 'Publish'
+  end  
 end
