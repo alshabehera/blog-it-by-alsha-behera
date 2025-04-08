@@ -1,4 +1,5 @@
 class Post < ApplicationRecord
+  enum status: { Publish: 0, Draft: 1 }
   has_and_belongs_to_many :categories
 
   belongs_to :user
@@ -8,9 +9,9 @@ class Post < ApplicationRecord
   validates :description, presence: true, length: { maximum: 10_000 }
   validates_inclusion_of :is_bloggable, in: [true, false]
   validates :slug, uniqueness: true
-  validate :slug_not_changed
 
-  before_create :set_slug
+  before_validation :set_slug, on: %i[create update]
+  before_save :update_last_published_date
 
   private
 
@@ -31,9 +32,7 @@ class Post < ApplicationRecord
     self.slug = slug_candidate
   end
 
-  def slug_not_changed
-    return unless will_save_change_to_slug? && persisted?
-
-    errors.add(:slug, I18n.t('post.slug.immutable'))
-  end
+  def update_last_published_date
+    self.last_published_date= Time.current if status == 'Publish'
+  end  
 end
