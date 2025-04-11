@@ -9,6 +9,7 @@ class Post < ApplicationRecord
   validates :description, presence: true, length: { maximum: 10_000 }
   validates_inclusion_of :is_bloggable, in: [true, false]
   validates :slug, uniqueness: true
+  validate :slug_not_changed
 
   before_validation :set_slug, on: %i[create update]
   before_save :update_last_published_date
@@ -30,6 +31,12 @@ class Post < ApplicationRecord
     end
     slug_candidate = slug_count.positive? ? "#{title_slug}-#{slug_count + 1}" : title_slug
     self.slug = slug_candidate
+  end
+
+  def slug_not_changed
+    return unless will_save_change_to_slug? && persisted?
+
+    errors.add(:slug, I18n.t('task.slug.immutable'))
   end
 
   def update_last_published_date
