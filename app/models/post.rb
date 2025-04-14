@@ -11,7 +11,7 @@ class Post < ApplicationRecord
   validates :slug, uniqueness: true
   validate :slug_not_changed
 
-  before_validation :set_slug, on: %i[create update]
+  before_validation :set_slug, on: :create
   before_save :update_last_published_date
 
   private
