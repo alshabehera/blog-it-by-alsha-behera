@@ -6,6 +6,7 @@ class CategoriesController < ApplicationController
 
   def create
     category = Category.create!(category_param)
+    render json: category, status: :created
   end
 
   private
