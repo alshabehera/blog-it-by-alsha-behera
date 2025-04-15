@@ -46,6 +46,12 @@ group :development, :test do
   # For code formatting and linting
   gem 'rubocop', require: false
   gem 'rubocop-rails', require: false
+
+   # Rails integration for factory_bot, a replacement for fixtures
+   gem 'factory_bot_rails'
+
+   # For auto-generating demo data
+   gem 'faker'
 end
 
 group :development do
@@ -73,3 +79,5 @@ gem 'react-rails', '~> 2.7.1'
 gem 'pry-byebug'
 
 gem 'pundit'
+
+gem 'simplecov', require: false, group: :test

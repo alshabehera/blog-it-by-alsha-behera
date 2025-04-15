@@ -116,9 +116,17 @@ GEM
     debug (1.10.0)
       irb (~> 1.10)
       reline (>= 0.3.8)
+    docile (1.4.1)
     drb (2.2.1)
     erubi (1.13.1)
     execjs (2.10.0)
+    factory_bot (6.5.1)
+      activesupport (>= 6.1.0)
+    factory_bot_rails (6.4.4)
+      factory_bot (~> 6.5)
+      railties (>= 5.0.0)
+    faker (3.5.1)
+      i18n (>= 1.8.11, < 2)
     globalid (1.2.1)
       activesupport (>= 6.1)
     i18n (1.14.7)
@@ -270,6 +278,12 @@ GEM
       rubocop (>= 1.72.1, < 2.0)
       rubocop-ast (>= 1.38.0, < 2.0)
     ruby-progressbar (1.13.0)
+    simplecov (0.22.0)
+      docile (~> 1.1)
+      simplecov-html (~> 0.11)
+      simplecov_json_formatter (~> 0.1)
+    simplecov-html (0.13.1)
+    simplecov_json_formatter (0.1.4)
     smart_properties (1.17.0)
     sprockets (4.2.1)
       concurrent-ruby (~> 1.0)
@@ -321,6 +335,8 @@ DEPENDENCIES
   bootsnap
   debug
   erb_lint!
+  factory_bot_rails
+  faker
   jbuilder
   jsbundling-rails
   pry-byebug
@@ -331,6 +347,7 @@ DEPENDENCIES
   responders
   rubocop
   rubocop-rails
+  simplecov
   sprockets-rails
   sqlite3 (~> 1.4)
   tzinfo-data
