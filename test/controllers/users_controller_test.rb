@@ -4,6 +4,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   def setup
     @organization = create(:organization)
     @user = create(:user, organization: @organization)
+    @auth_header = headers(@user)
   end
 
   def test_should_create_user_with_valid_params
@@ -14,7 +15,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
         password: 'welcome',
         password_confirmation: 'welcome',
         organization_id: @organization.id } 
-    }, as: :json
+    }, headers: @auth_header
 
     assert_response :success
     assert_includes response.parsed_body["notice"], "User was successfully created"
@@ -29,7 +30,8 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
         password_confirmation: "incorrect",     
         organization_id: nil                   
       }
-    }, as: :json
+    }, headers: @auth_header
+
   
     assert_response :unprocessable_entity
   
@@ -47,7 +49,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
                                       password: 'welcome',
                                       password_confirmation: 'welcome',
                                       organization_id: @organization.id } 
-                              }, as: :json 
+                              }, headers: @auth_header
     assert_response :success
     response_json = response.parsed_body
   end
@@ -59,7 +61,8 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
                                       password: 'welcome',
                                       password_confirmation: 'not matching confirmation',
                                       organization_id: @organization.id } 
-                              }, as: :json 
+                              }, headers: @auth_header
+
 
     assert_response :unprocessable_entity
     assert_equal "Password confirmation doesn't match Password", response.parsed_body['error']

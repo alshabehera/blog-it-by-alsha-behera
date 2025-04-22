@@ -1,3 +1,6 @@
+require "factory_bot_rails"
+require "faker"
+
 def enable_test_coverage
   require 'simplecov'
   SimpleCov.start do

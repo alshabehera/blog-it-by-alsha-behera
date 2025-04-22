@@ -12,15 +12,13 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
       user: @user,
       organization: @organization,
       categories: [@category1],
-      title: "Test Post",
-      description: "This is a test post"
     )
 
     @auth_headers = headers(@user)
   end
 
   def test_should_list_all_posts
-    get posts_path, headers: @auth_headers, as: :json
+    get posts_path, headers: @auth_headers
     assert_response :success
 
     body = response.parsed_body
@@ -41,7 +39,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     }
 
     assert_difference -> { Post.count }, 1 do
-      post posts_path, params: post_params, headers: @auth_headers, as: :json
+      post posts_path, params: post_params, headers: @auth_headers
     end
 
     assert_response :success
@@ -52,7 +50,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     post_params = { title: "", description: "" }
   
     assert_no_difference "Post.count" do
-      post posts_path, params: { post: post_params }, headers: @auth_headers, as: :json
+      post posts_path, params: { post: post_params }, headers: @auth_headers
     end
   
     assert_response :unprocessable_entity
@@ -62,7 +60,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
   end               
 
   def test_should_show_post
-    get post_path(@post.slug), headers: @auth_headers, as: :json
+    get post_path(@post.slug), headers: @auth_headers
     assert_response :success
   
     response_json = response.parsed_body["post"]
@@ -81,7 +79,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
       }
     }
 
-    patch post_path(@post.slug), params: update_params, headers: @auth_headers, as: :json
+    patch post_path(@post.slug), params: update_params, headers: @auth_headers
     assert_response :success
 
     @post.reload
@@ -91,7 +89,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
   end
 
   def test_should_not_update_post_with_invalid_params
-    patch post_path(@post.slug), params: { post: { title: "" } }, headers: @auth_headers, as: :json
+    patch post_path(@post.slug), params: { post: { title: "" } }, headers: @auth_headers
   
     assert_response :unprocessable_entity
     assert_match "Title can't be blank", response.parsed_body["error"]
@@ -100,7 +98,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
 
   def test_should_destroy_post
     assert_difference -> { Post.count }, -1 do
-      delete post_path(@post.slug), headers: @auth_headers, as: :json
+      delete post_path(@post.slug), headers: @auth_headers
     end
 
     assert_response :success
