@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CategoriesController < ApplicationController
   skip_before_action :authenticate_user_using_x_auth_token
   def index
@@ -5,7 +7,7 @@ class CategoriesController < ApplicationController
   end
 
   def create
-    category = Category.create!(category_param)
+    Category.create!(category_param)
   end
 
   private

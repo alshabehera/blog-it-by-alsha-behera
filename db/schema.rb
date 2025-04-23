@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -10,55 +12,55 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_04_03_085006) do
-  create_table "categories", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+ActiveRecord::Schema[7.1].define(version: 20_250_403_085_006) do
+  create_table 'categories', force: :cascade do |t|
+    t.string 'name'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
   end
 
-  create_table "categories_posts", id: false, force: :cascade do |t|
-    t.integer "post_id", null: false
-    t.integer "category_id", null: false
-    t.index ["post_id", "category_id"], name: "index_categories_posts_on_post_id_and_category_id"
+  create_table 'categories_posts', id: false, force: :cascade do |t|
+    t.integer 'post_id', null: false
+    t.integer 'category_id', null: false
+    t.index %w[post_id category_id], name: 'index_categories_posts_on_post_id_and_category_id'
   end
 
-  create_table "organizations", force: :cascade do |t|
-    t.string "name", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table 'organizations', force: :cascade do |t|
+    t.string 'name', null: false
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
   end
 
-  create_table "posts", force: :cascade do |t|
-    t.string "title", null: false
-    t.text "description", null: false
-    t.integer "upvotes", default: 0, null: false
-    t.integer "downvotes", default: 0, null: false
-    t.boolean "is_bloggable", default: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "slug", null: false
-    t.integer "user_id", null: false
-    t.integer "organization_id", null: false
-    t.integer "status", default: 0
-    t.datetime "last_published_date"
-    t.index ["organization_id"], name: "index_posts_on_organization_id"
-    t.index ["slug"], name: "index_posts_on_slug", unique: true
-    t.index ["user_id"], name: "index_posts_on_user_id"
+  create_table 'posts', force: :cascade do |t|
+    t.string 'title', null: false
+    t.text 'description', null: false
+    t.integer 'upvotes', default: 0, null: false
+    t.integer 'downvotes', default: 0, null: false
+    t.boolean 'is_bloggable', default: false
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.string 'slug', null: false
+    t.integer 'user_id', null: false
+    t.integer 'organization_id', null: false
+    t.integer 'status', default: 0
+    t.datetime 'last_published_date'
+    t.index ['organization_id'], name: 'index_posts_on_organization_id'
+    t.index ['slug'], name: 'index_posts_on_slug', unique: true
+    t.index ['user_id'], name: 'index_posts_on_user_id'
   end
 
-  create_table "users", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "email", null: false
-    t.string "password_digest", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "organization_id"
-    t.string "authentication_token"
-    t.index ["email"], name: "index_users_on_email", unique: true
+  create_table 'users', force: :cascade do |t|
+    t.string 'name', null: false
+    t.string 'email', null: false
+    t.string 'password_digest', null: false
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.integer 'organization_id'
+    t.string 'authentication_token'
+    t.index ['email'], name: 'index_users_on_email', unique: true
   end
 
-  add_foreign_key "posts", "organizations"
-  add_foreign_key "posts", "users"
-  add_foreign_key "users", "organizations"
+  add_foreign_key 'posts', 'organizations'
+  add_foreign_key 'posts', 'users'
+  add_foreign_key 'users', 'organizations'
 end

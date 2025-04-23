@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class SeedSlugValueForExistingPosts < ActiveRecord::Migration[7.1]
   def up
     Post.find_each do |post|

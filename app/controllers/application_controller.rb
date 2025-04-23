@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ApplicationController < ActionController::Base
   before_action :authenticate_user_using_x_auth_token
 
@@ -5,7 +7,7 @@ class ApplicationController < ActionController::Base
 
   def handle_api_exception(exception)
     case exception
-    when -> (e) { e.message.include?("PG::") || e.message.include?("SQLite3::") }
+    when ->(e) { e.message.include?('PG::') || e.message.include?('SQLite3::') }
       handle_database_level_exception(exception)
 
     when ActionController::ParameterMissing
@@ -18,7 +20,7 @@ class ApplicationController < ActionController::Base
       render_error(exception.message)
       # active
     when ActiveModel::ValidationError, ActiveRecord::RecordInvalid, ArgumentError
-      error_message = exception.message.gsub("Validation failed: ", "")
+      error_message = exception.message.gsub('Validation failed: ', '')
       render_error(error_message, :unprocessable_entity)
 
     else
@@ -32,7 +34,7 @@ class ApplicationController < ActionController::Base
 
   def handle_generic_exception(exception, status = :internal_server_error)
     log_exception(exception) unless Rails.env.test?
-    error = Rails.env.production? ? t("generic_error") : exception
+    error = Rails.env.production? ? t('generic_error') : exception
     render_error(error, status)
   end
 
@@ -44,9 +46,9 @@ class ApplicationController < ActionController::Base
 
   def render_error(error, status = :unprocessable_entity, context = {})
     error_message = error
-    is_exception = error.kind_of?(StandardError)
+    is_exception = error.is_a?(StandardError)
     if is_exception
-      is_having_record = error.methods.include? "record"
+      is_having_record = error.methods.include? 'record'
       error_message = is_having_record ? error.record.errors_to_sentence : error.message
     end
     render status:, json: { error: error_message }.merge(context)
@@ -65,18 +67,17 @@ class ApplicationController < ActionController::Base
   # previous code
 
   def authenticate_user_using_x_auth_token
-    user_email = request.headers["X-Auth-Email"].presence
-    auth_token = request.headers["X-Auth-Token"].presence
+    user_email = request.headers['X-Auth-Email'].presence
+    auth_token = request.headers['X-Auth-Token'].presence
     user = user_email && User.find_by!(email: user_email)
-    is_valid_token = user && auth_token && ActiveSupport::SecurityUtils.secure_compare(user.authentication_token, auth_token)
+    is_valid_token = user && auth_token && ActiveSupport::SecurityUtils.secure_compare(user.authentication_token,
+                                                                                       auth_token)
     if is_valid_token
       @current_user = user
     else
-      render_error(t("session.could_not_auth"), :unauthorized)
+      render_error(t('session.could_not_auth'), :unauthorized)
     end
   end
 
-  def current_user
-    @current_user
-  end
-end  
+  attr_reader :current_user
+end

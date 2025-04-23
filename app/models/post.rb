@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Post < ApplicationRecord
   enum status: { Publish: 0, Draft: 1 }
   has_and_belongs_to_many :categories
@@ -19,13 +21,13 @@ class Post < ApplicationRecord
     title_slug = title.parameterize
     latest_post_slug = Post.where(
       'slug LIKE ? or slug LIKE ?',
-      "#{title_slug}",
+      title_slug.to_s,
       "#{title_slug}-%"
     ).order('LENGTH(slug) DESC', slug: :desc).first&.slug
     slug_count = 0
     if latest_post_slug.present?
       slug_count = latest_post_slug.split('-').last.to_i
-      only_one_slug_exists = slug_count == 0
+      only_one_slug_exists = slug_count.zero?
       slug_count = 1 if only_one_slug_exists
     end
     slug_candidate = slug_count.positive? ? "#{title_slug}-#{slug_count + 1}" : title_slug
@@ -33,6 +35,6 @@ class Post < ApplicationRecord
   end
 
   def update_last_published_date
-    self.last_published_date= Time.current if status == 'Publish'
-  end  
+    self.last_published_date = Time.current if status == 'Publish'
+  end
 end

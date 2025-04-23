@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   constraints(->(req) { req.format == :json }) do
     resources :posts, param: :slug

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PostsController < ApplicationController
   before_action :load_post, only: %i[destroy update show]
   skip_before_action :authenticate_user_using_x_auth_token
@@ -6,21 +8,20 @@ class PostsController < ApplicationController
   end
 
   def create
-    post = Post.create!(post_params)
+    Post.create!(post_params)
     render_notice(t('post.create'))
   end
 
-  def show
-  end
+  def show; end
 
   def update
     @post.update!(post_params)
-    render_notice(t("post.update"))
+    render_notice(t('post.update'))
   end
 
   def destroy
     @post.destroy!
-    render_notice(t("post.delete"))
+    render_notice(t('post.delete'))
   end
 
   private
