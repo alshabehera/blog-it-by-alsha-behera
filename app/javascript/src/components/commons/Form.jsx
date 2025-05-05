@@ -51,7 +51,6 @@ const Form = ({
           onChange={handleCategoryChange}
           options={category}
         />
-          
       </div>
 
   );

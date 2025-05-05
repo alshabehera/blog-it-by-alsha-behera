@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const fetch = () => axios.get("/posts");
+const fetch = (params = {}) => axios.get("/posts", { params });
 const create = (payload) => axios.post("/posts",{post:payload})
 const show = (slug) => axios.get(`/posts/${slug}`)
 const update = (slug,payload) => axios.patch(`/posts/${slug}`, {post:payload})
