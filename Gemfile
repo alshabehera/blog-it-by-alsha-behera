@@ -81,3 +81,6 @@ gem 'pry-byebug'
 gem 'pundit'
 
 gem 'simplecov', require: false, group: :test
+
+gem "sidekiq", "~> 6.5.12"
+gem "redis", "~> 4.8", ">= 4.8.1"
