@@ -1,6 +1,7 @@
 class Post < ApplicationRecord
   enum status: { Publish: 0, Draft: 1 }
   has_and_belongs_to_many :categories
+  has_many :votes, dependent: :destroy
 
   belongs_to :user
   belongs_to :organization
@@ -13,6 +14,10 @@ class Post < ApplicationRecord
 
   before_validation :set_slug, on: :create
   before_save :update_last_published_date
+
+  def net_votes
+    upvotes - downvotes
+  end
 
   private
 

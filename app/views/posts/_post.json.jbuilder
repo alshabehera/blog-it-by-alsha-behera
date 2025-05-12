@@ -6,7 +6,10 @@ json.extract! post,
               :created_at,
               :updated_at,
               :description,
-              :last_published_date
+              :last_published_date,
+              :is_bloggable,
+              :upvotes,
+              :downvotes
 
 json.formatted_last_published_date post.last_published_date&.strftime('%b %d, %Y, %I:%M %p')
 
