@@ -47,11 +47,11 @@ group :development, :test do
   gem 'rubocop', require: false
   gem 'rubocop-rails', require: false
 
-   # Rails integration for factory_bot, a replacement for fixtures
-   gem 'factory_bot_rails'
+  # Rails integration for factory_bot, a replacement for fixtures
+  gem 'factory_bot_rails'
 
-   # For auto-generating demo data
-   gem 'faker'
+  # For auto-generating demo data
+  gem 'faker'
 end
 
 group :development do
@@ -82,5 +82,14 @@ gem 'pundit'
 
 gem 'simplecov', require: false, group: :test
 
-gem "sidekiq", "~> 6.5.12"
-gem "redis", "~> 4.8", ">= 4.8.1"
+gem 'redis', '~> 4.8', '>= 4.8.1'
+gem 'sidekiq'
+
+# PDF generation gem
+gem 'wicked_pdf'
+# wicked_pdf uses the following binary
+gem 'wkhtmltopdf-binary'
+
+gem "aws-sdk-s3"
+
+gem "dotenv-rails"
