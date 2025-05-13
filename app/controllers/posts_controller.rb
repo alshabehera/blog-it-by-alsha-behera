@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :load_post, only: %i[destroy update show]
+  before_action :load_post!, only: %i[destroy update show]
   skip_before_action :authenticate_user_using_x_auth_token
 
   def index
@@ -26,7 +26,7 @@ class PostsController < ApplicationController
 
   private
 
-  def load_post
+  def load_post!
     @post = Post.includes(:categories, :user, :organization).find_by!(slug: params[:slug])
   end
 

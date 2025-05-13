@@ -5,9 +5,9 @@ class VotesController < ApplicationController
     vote = @post.votes.find_or_initialize_by(user: current_user)
 
     if vote.vote_type == params[:vote_type].to_i
-      vote.destroy
+      vote.destroy!
     else
-      vote.update(vote_type: params[:vote_type])
+      vote.update!(vote_type: params[:vote_type])
     end
   end
 
